@@ -7,7 +7,7 @@ notesCtrl.createNewNote = async (req,res) => {
     const {title, description} = req.body
     const newNote = new Note({title, description})
     await newNote.save();
-    res.send('new note');
+    res.redirect('/notes');
 };
 notesCtrl.renderNotes = async (req, res) => {
     const notes = await Note.find().lean()
@@ -19,8 +19,9 @@ notesCtrl.renderEditForm = (req, res) => {
 notesCtrl.updateNote = (req, res) => {
     res.send('update note');
 };
-notesCtrl.deleteNote = (req, res) => {
-    res.send('deleting note');
+notesCtrl.deleteNote = async (req, res) => {
+    await Note.findByIdAndDelete(req.params.id)
+    res.redirect('/notes');
 }
 
 module.exports = notesCtrl;
