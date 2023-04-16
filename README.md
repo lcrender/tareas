@@ -1,2 +1,2 @@
 # tareas
-App para crear tareas Nodejs y Mongodb
+Web App para crear tareas NodeJs, Mongodb, Handlbars.
